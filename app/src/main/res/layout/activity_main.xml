@@ -55,7 +55,7 @@
             android:alpha="0.65"
             android:textColor="@color/white"
             android:onClick="getWeatherDetails"
-            android:text="Current Weather"
+            android:text="Check Weather"
             app:backgroundTint="@null" />
 
         <ScrollView
