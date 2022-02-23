@@ -3,6 +3,7 @@ package android.example.weatherupdate;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -47,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
             StringRequest stringRequest = new StringRequest(Request.Method.POST, tempUrl, new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {
-
+                    Log.d("response", response);
                 }
             }, new Response.ErrorListener() {
                 @Override
