@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
                         String countryName = jsonObjectSys.getString("country");
                         String cityName = jsonResponse.getString("name");
 
-                        tvResult.setTextColor(Color.rgb(68, 134, 199));
+                        //tvResult.setTextColor(Color.rgb(68, 134, 199));
 
                         output += "Current Weather of " + cityName + " (" + countryName + ")"
                                 + "\n Temp: " + df.format(temp) + " *C"
