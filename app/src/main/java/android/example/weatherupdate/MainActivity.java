@@ -1,6 +1,7 @@
 package android.example.weatherupdate;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ComponentActivity;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -27,12 +28,17 @@ import java.text.DecimalFormat;
 public class MainActivity extends AppCompatActivity {
     EditText etCity, etCountry;
     TextView tvResult;
+
+    // ADDED BY DEREK
+    public static final String CITY_NAME = "android.example.com.activities.extra.CITY_NAME";
+
     private final String url = "http://api.openweathermap.org/data/2.5/weather";
     private final String appid = "1b79bf73d3b4001b6fbc49847ec98423"; //last digit is actually 3
     DecimalFormat df = new DecimalFormat("#.##");
 
-    // ADDED BY DEREK
-    public static String CITY_NAME = null;
+
+
+
 
 
 
@@ -105,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
 
 
                         // ADDED BY DEREK
-                        next.putExtra("CITY_NAME", cityName);
+                        next.putExtra(CITY_NAME, cityName);
                         // END
 
                         tvResult.setText(output);

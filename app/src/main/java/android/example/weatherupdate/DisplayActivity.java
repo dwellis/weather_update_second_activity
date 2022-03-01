@@ -19,9 +19,8 @@ public class DisplayActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Intent i = getIntent();
-        Bundle extras = getIntent().getExtras();
-        if(extras != null) {
-            String cityName = extras.getString("CITY_NAME");
+        if(i.getExtras() != null) {
+            String cityName = i.getStringExtra(MainActivity.CITY_NAME);
             TextView tvCityName = findViewById(R.id.cityNameDisplay);
             tvCityName.setText(cityName);
         }
