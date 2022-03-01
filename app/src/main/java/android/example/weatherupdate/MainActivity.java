@@ -2,6 +2,7 @@ package android.example.weatherupdate;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
@@ -27,8 +28,13 @@ public class MainActivity extends AppCompatActivity {
     EditText etCity, etCountry;
     TextView tvResult;
     private final String url = "http://api.openweathermap.org/data/2.5/weather";
-    private final String appid = "1b79bf73d3b4001b6fbc49847ec98429"; //last digit is actually 3
+    private final String appid = "1b79bf73d3b4001b6fbc49847ec98423"; //last digit is actually 3
     DecimalFormat df = new DecimalFormat("#.##");
+
+    // ADDED BY DEREK
+    public static String CITY_NAME = null;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +50,11 @@ public class MainActivity extends AppCompatActivity {
         String city = etCity.getText().toString().trim();
         String country = etCountry.getText().toString().trim();
 
+        // ADDED BY DEREK
+        Intent next = new Intent(this, DisplayActivity.class);
+
+        // END
+
         if (city.equals("")) {
             tvResult.setText("Must choose a city");
         } else {
@@ -57,6 +68,8 @@ public class MainActivity extends AppCompatActivity {
                 public void onResponse(String response) {
                     Log.d("response", response);
                     String output = "";
+
+
                     try {
                         JSONObject jsonResponse = new JSONObject(response);
                         JSONArray jsonArray = jsonResponse.getJSONArray("weather");
@@ -89,6 +102,12 @@ public class MainActivity extends AppCompatActivity {
                                 + "\n Cloudiness: " + clouds + "%"
                                 + "\n Pressure: " + pressure + " hPa";
 
+
+
+                        // ADDED BY DEREK
+                        next.putExtra("CITY_NAME", cityName);
+                        // END
+
                         tvResult.setText(output);
 
                     } catch (JSONException e) {
@@ -103,6 +122,16 @@ public class MainActivity extends AppCompatActivity {
             });
             RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
             requestQueue.add(stringRequest);
+
+            // ADDED BY DEREK
+            // instead of printing to an output immediately we are going to adjust the values
+            // in the next activities TextViews and then jump to the second activity
+
+            startActivity(next);
+
+            // DEREKS CODE END
         }
     }
+
+
 }
